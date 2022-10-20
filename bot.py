@@ -261,7 +261,7 @@ async def get_mails(ev, email):
     try:
         mails = eval(resp.text)
     except Exception as exc:
-        await ev.edit("Error while parsing mailbox. Report to @DS_Botz)
+        await ev.edit("Error while parsing mailbox. Report to @DS_Botz")
         log.exception("Error parsing mailbox: %s", exc)
         return
     return mails
@@ -316,7 +316,7 @@ async def read_mail(event):
             msg = f"**__New Email__**\n\n**From:** `{content.get('from')}`\n**Subject:** `{content.get('subject')}`\n**Message:**"
             response = t.post(
                 title=f"Email for {user.first_name}",
-                author="@TheEmailBot",
+                author="@TempMailDSBot",
                 text=content.get("body"),
             )
             msg += f" [read message]({response.get('url')})\n"
