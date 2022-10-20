@@ -256,7 +256,7 @@ async def get_mails(ev, email):
     api_uri = f"https://www.1secmail.com/api/v1/?action=getMessages&login={username}&domain={domain}"
     resp = get(api_uri)
     if resp.status_code != 200:
-        await ev.edit("Server down! Report to @DS_Botz)
+        await ev.edit("Server down! Report to @DS_Botz")
         return
     try:
         mails = eval(resp.text)
@@ -305,12 +305,12 @@ async def read_mail(event):
             api = f"https://www.1secmail.com/api/v1/?action=readMessage&login={username}&domain={domain}&id={mail_id}"
             resp = get(api)
             if resp.status_code != 200:
-                await ev.edit("Server down! Report to @BotzHubChat.")
+                await ev.edit("Server down! Report to @DS_Botz.")
                 return
             try:
                 content = resp.json()
             except Exception as exc:
-                await ev.edit("Error while email content. Report to @DS_Botz)
+                await ev.edit("Error while email content. Report to @DS_Botz")
                 log.exception("Error parsing email content: %s", exc)
                 return
             msg = f"**__New Email__**\n\n**From:** `{content.get('from')}`\n**Subject:** `{content.get('subject')}`\n**Message:**"
