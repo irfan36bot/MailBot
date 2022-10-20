@@ -40,7 +40,7 @@ except Exception as e:
     exit(1)
 
 t = TelegraphPoster(use_api=True)
-t.create_api_token("@TheEmailBot", "MailBot", "https://www.xditya.me/")
+t.create_api_token("@TempMailDSBot", "MailBot", "https://t.me/DS_Botz")
 
 REDIS_URI = REDIS_URI.split(":")
 db = Redis(
@@ -108,11 +108,11 @@ async def start_msg(event):
     msg = f"Hi {user.first_name}, welcome to the bot!\n\nI'm a MailBox Bot - I can generate a random e-mail address for you and send you the e-mails that come to that e-mail address!\n\nHit /generate to set-up your inbox!"
     btns = [
         Button.inline("Disclaimer", data="disclaimer"),
-        Button.url("Updates", url="https://t.me/BotzHub"),
+        Button.url("Updates", url="https://t.me/DS_Botz"),
     ]
     if not await check_user(user.id):
-        msg += "\n\nI'm limited to the users in @BotzHub. Kinly join @BotzHub and then /start the bot!"
-        btns = Button.url("Join Channel", url="https://t.me/BotzHub")
+        msg += "\n\nI'm limited to the users in @DS_Botz. Kinly join @DS_Botz and then /start the bot!"
+        btns = Button.url("Join Channel", url="https://t.me/DS_Botz")
     await event.reply(msg, buttons=btns)
     if not await is_added("MAILBOT", user.id):
         await add_to_db("MAILBOT", user.id)
@@ -124,10 +124,10 @@ async def back(event):
     msg = f"Hi {user.first_name}, welcome to the bot!\n\nI'm a MailBox Bot - I can generate a random e-mail address for you and send you the e-mails that come to that e-mail address!\n\nHit /generate to set-up your inbox!"
     btns = [
         Button.inline("Disclaimer", data="disclaimer"),
-        Button.url("Updates", url="https://t.me/BotzHub"),
+        Button.url("Updates", url="https://t.me/DS_Botz"),
     ]
     if not await check_user(user.id):
-        msg += "\n\nI'm limited to the users in @BotzHub. Kinly join @BotzHub and then /start the bot!"
+        msg += "\n\nI'm limited to the users in @DS_Botz. Kinly join @DS_Botz and then /start the bot!"
         btns = Button.url("Join Channel", url="https://t.me/BotzHub")
     await event.edit(msg, buttons=btns)
 
@@ -154,7 +154,7 @@ async def gen_id(event):
         domains = eval(resp.text)
     except Exception as ex:
         await e.edit(
-            "Unknown error while fetching domain list, report to @BotzHubChat."
+            "Unknown error while fetching domain list, report to @DS_Botz."
         )
         log.exception("Error while parsing domains: %s", ex)
         return
@@ -171,7 +171,7 @@ async def get_random_domain(event, num=None):
         domains = eval(resp.text)
     except Exception as ex:
         await e.edit(
-            "Unknown error while fetching domain list, report to @BotzHubChat."
+            "Unknown error while fetching domain list, report to @DS_Botz."
         )
         log.exception("Error while fetching domains: %s", ex)
         return
@@ -256,12 +256,12 @@ async def get_mails(ev, email):
     api_uri = f"https://www.1secmail.com/api/v1/?action=getMessages&login={username}&domain={domain}"
     resp = get(api_uri)
     if resp.status_code != 200:
-        await ev.edit("Server down! Report to @BotzHubChat.")
+        await ev.edit("Server down! Report to @DS_Botz)
         return
     try:
         mails = eval(resp.text)
     except Exception as exc:
-        await ev.edit("Error while parsing mailbox. Report to @BotzHubChat")
+        await ev.edit("Error while parsing mailbox. Report to @DS_Botz)
         log.exception("Error parsing mailbox: %s", exc)
         return
     return mails
@@ -310,7 +310,7 @@ async def read_mail(event):
             try:
                 content = resp.json()
             except Exception as exc:
-                await ev.edit("Error while email content. Report to @BotzHubChat")
+                await ev.edit("Error while email content. Report to @DS_Botz)
                 log.exception("Error parsing email content: %s", exc)
                 return
             msg = f"**__New Email__**\n\n**From:** `{content.get('from')}`\n**Subject:** `{content.get('subject')}`\n**Message:**"
