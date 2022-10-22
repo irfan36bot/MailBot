@@ -128,7 +128,7 @@ async def back(event):
     ]
     if not await check_user(user.id):
         msg += "\n\nI'm limited to the users in @DS_Botz. Kinly join @DS_Botz and then /start the bot!"
-        btns = Button.url("Join Channel", url="https://t.me/BotzHub")
+        btns = Button.url("Join Channel", url="https://t.me/DS_Botz")
     await event.edit(msg, buttons=btns)
 
 
@@ -143,7 +143,7 @@ async def domain_list(event):
 @bot.on(events.NewMessage(pattern="^/generate"))
 async def gen_id(event):
     if not await check_user(event.sender_id):
-        await event.reply("Kindly join @BotzHub to be able to use this bot!")
+        await event.reply("Kindly join @DS_Botz to be able to use this bot!")
         return
     e = await event.reply("Please wait...")
     resp = get("https://www.1secmail.com/api/v1/?action=getDomainList")
