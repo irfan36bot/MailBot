@@ -92,7 +92,7 @@ async def check_user(user):
     try:
         await bot(
             functions.channels.GetParticipantRequest(
-                channel="BotzHub", participant=user
+                channel="DS_Botz", participant=user
             )
         )
         ok = True
