@@ -20,7 +20,7 @@ log = logging.getLogger("XDITYA")
 
 # fetching variales from env
 try:
-    BOT_TOKEN = "5693681046:AAHBTX_7DR5d0gOZiv3DB_z_iMz8WByxqZ0"
+    BOT_TOKEN = "5642652426:AAHyMASUTItgPSqcg9TxKF_HRsXVsePSCMA"
     OWNERS = "1125671241"
     REDIS_URI = "redis-11964.c212.ap-south-1-1.ec2.cloud.redislabs.com:11964"
     REDIS_PASSWORD = "NRRPP3JsX3PyasF8ITrxhrQYofL1qrCu"
